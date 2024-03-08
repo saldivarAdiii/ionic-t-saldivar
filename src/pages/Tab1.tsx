@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 
@@ -15,11 +15,18 @@ const Tab1: React.FC = () => {
           <IonToolbar>
             <IonTitle size="large">profile</IonTitle>
           </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
 
+        </IonHeader>
+        <IonCard>
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+      <IonCardHeader>
+        <IonCardTitle>adiii</IonCardTitle>
+        <IonCardSubtitle>blessed</IonCardSubtitle>
+      </IonCardHeader>
+
+      <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+    </IonCard>
       </IonContent>
-      
     </IonPage>
   );
 };
