@@ -2,6 +2,7 @@ import {
   //Initial Components
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
 } from '@ionic/react';
+import './home.css';
 
 // CSS
 //import './profile.css';
@@ -20,11 +21,11 @@ const Home: React.FC = () => {
             <IonTitle size="large">Home</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent className="ion-padding">
+        <IonContent className="content">
       <h1>WELCOME TO MY HOMEPAGE</h1>
  
 
-      <p>Here's a small text description for the content. Nothing more, nothing less.</p>
+      <p>I am Adelyn L. Saldivar learning IONIC FRAMEWORK</p>
     </IonContent>
       </IonContent>
     </IonPage>
