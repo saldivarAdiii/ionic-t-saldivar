@@ -24,7 +24,7 @@ const Home: React.FC = () => {
       <h1>WELCOME TO MY HOMEPAGE</h1>
  
 
-      <p>Here's a small text description for the content. Nothing more, nothing less.</p>
+      <p>I am Adelyn L. Saldivar learning IONIC FRAMEWORK</p>
     </IonContent>
       </IonContent>
     </IonPage>
