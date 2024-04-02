@@ -22,8 +22,8 @@ const Tab2: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
         <h2>Clicks: {count}</h2>
-        <IonButton onClick={incrementCount}>Click me</IonButton>
-        <IonButton onClick={resetCount}>Reset</IonButton>
+        <IonButton onClick={incrementCount}>Click Counter</IonButton>
+        <IonButton onClick={resetCount}>Restart</IonButton>
       </IonContent>
     </IonPage>
   );
