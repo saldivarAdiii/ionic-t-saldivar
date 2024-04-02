@@ -1,22 +1,70 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import React, { useState } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonInput } from '@ionic/react';
 import './Tab3.css';
 
 const Tab3: React.FC = () => {
+  const [result, setResult] = useState<number | string>('');
+
+  const handleButtonClick = (value: string) => {
+    if (value === '=') {
+      try {
+        setResult(eval(result.toString()));
+      } catch (error) {
+        setResult('Error');
+      }
+    } else if (value === 'C') {
+      setResult('');
+    } else {
+      setResult(prevResult => prevResult.toString() + value);
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>Calculator tab</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+        <IonGrid>
+          <IonRow>
+            <IonCol size="12">
+              <IonInput value={result} readonly className="result-display"></IonInput>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            {[7, 8, 9, '/'].map(num => (
+              <IonCol key={num}>
+                <IonButton onClick={() => handleButtonClick(num.toString())}>{num}</IonButton>
+              </IonCol>
+            ))}
+          </IonRow>
+          <IonRow>
+            {[4, 5, 6, '*'].map(num => (
+              <IonCol key={num}>
+                <IonButton onClick={() => handleButtonClick(num.toString())}>{num}</IonButton>
+              </IonCol>
+            ))}
+          </IonRow>
+          <IonRow>
+            {[1, 2, 3, '-'].map(num => (
+              <IonCol key={num}>
+                <IonButton onClick={() => handleButtonClick(num.toString())}>{num}</IonButton>
+              </IonCol>
+            ))}
+          </IonRow>
+          <IonRow>
+            {[0, '.', '=', '+'].map(num => (
+              <IonCol key={num}>
+                <IonButton onClick={() => handleButtonClick(num === '=' ? '=' : num.toString())}>{num}</IonButton>
+              </IonCol>
+            ))}
+            <IonCol>
+              <IonButton onClick={() => handleButtonClick('C')}>C</IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
