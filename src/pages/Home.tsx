@@ -39,14 +39,14 @@ const Home: React.FC = () => {
         <IonList>
           <IonItem>
             <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img alt="Silhouette of mountains" src="../src/assets/img/click.png" />
             </IonThumbnail>
             <IonLabel>Item</IonLabel>
           </IonItem>
 
           <IonItem>
             <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img alt="Silhouette of mountains" src="../src/assets/img/calculator.png" />
             </IonThumbnail>
             <IonLabel>Item</IonLabel>
           </IonItem>
