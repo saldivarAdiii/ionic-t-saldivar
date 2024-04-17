@@ -13,7 +13,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personCircle, speedometerOutline, square, triangle } from 'ionicons/icons';
 import Home from './pages/Home';
 import Profile from './pages/profile';
-import Tab2 from './pages/clickcounter';
+import Click from './pages/clickcounter';
 import Calculator from './pages/calculator';
 
 /* Core CSS required for Ionic components to work properly */
@@ -48,8 +48,8 @@ const App: React.FC = () => (
           <Route exact path="/profile">
             <Profile />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/Click">
+            <Click />
           </Route>
           <Route path="/calculator">
             <Calculator />
@@ -67,7 +67,7 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={personCircle} />
             <IonLabel>profile</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="Click" href="/Click">
             <IonIcon aria-hidden="true" icon={speedometerOutline} />
             <IonLabel>click counter</IonLabel>
           </IonTabButton>
