@@ -41,14 +41,14 @@ const Home: React.FC = () => {
             <IonThumbnail slot="start">
               <img alt="Silhouette of mountains" src="../src/assets/img/click.png" />
             </IonThumbnail>
-            <IonLabel>Item</IonLabel>
+            <IonLabel>Click Counter</IonLabel>
           </IonItem>
 
           <IonItem>
             <IonThumbnail slot="start">
               <img alt="Silhouette of mountains" src="../src/assets/img/calculator.png" />
             </IonThumbnail>
-            <IonLabel>Item</IonLabel>
+            <IonLabel>Calculator</IonLabel>
           </IonItem>
 
           <IonItem>
