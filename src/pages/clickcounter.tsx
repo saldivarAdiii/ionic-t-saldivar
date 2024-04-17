@@ -24,6 +24,9 @@ const clickcounter: React.FC = () => {
         <h2>Clicks: {count}</h2>
         <IonButton onClick={incrementCount}>Click Counter</IonButton>
         <IonButton onClick={resetCount}>Restart</IonButton>
+        <br />
+        <br />
+        <IonButton href='/home'>Back to Home</IonButton>
       </IonContent>
     </IonPage>
   );
