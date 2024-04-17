@@ -32,8 +32,8 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonCard>
       <IonCardHeader>
-        <IonCardTitle>Card Title</IonCardTitle>
-        <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+        <IonCardTitle>Adi's Application</IonCardTitle>
+        <IonCardSubtitle></IonCardSubtitle>
       </IonCardHeader>
       <IonCardContent>
         <IonList>
