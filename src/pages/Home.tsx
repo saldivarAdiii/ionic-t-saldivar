@@ -1,6 +1,16 @@
 import {
   //Initial Components
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonThumbnail,
+  IonButton
 } from '@ionic/react';
 import './home.css';
 
@@ -21,12 +31,43 @@ const Home: React.FC = () => {
             <IonTitle size="large">Home</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent className="content">
-      <h1>WELCOME TO MY HOMEPAGE</h1>
- 
+        <IonCard>
+      <IonCardHeader>
+        <IonCardTitle>Adi's Application</IonCardTitle>
+        <IonCardSubtitle></IonCardSubtitle>
+      </IonCardHeader>
+      <IonCardContent>
+        <IonList>
+          <IonItem>
+            <IonThumbnail slot="start">
+              <img alt="Silhouette of mountains" src="../src/assets/img/click.png" />
+            </IonThumbnail>
+            <IonButton href='/Click'>Click Counter</IonButton>
+          </IonItem>
 
-      <p>I am Adelyn L. Saldivar learning IONIC FRAMEWORK</p>
-    </IonContent>
+          <IonItem>
+            <IonThumbnail slot="start">
+              <img alt="Silhouette of mountains" src="../src/assets/img/calculator.png" />
+            </IonThumbnail>
+            <IonButton href='/calculator'>Calculator</IonButton>
+          </IonItem>
+
+          <IonItem>
+            <IonThumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </IonThumbnail>
+            <IonLabel>Blank</IonLabel>
+          </IonItem>
+
+          <IonItem lines="none">
+            <IonThumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </IonThumbnail>
+            <IonLabel>Blank</IonLabel>
+          </IonItem>
+        </IonList>
+      </IonCardContent>
+    </IonCard>
       </IonContent>
     </IonPage>
   );
