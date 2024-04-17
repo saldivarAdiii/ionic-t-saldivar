@@ -56,14 +56,14 @@ const Home: React.FC = () => {
             <IonThumbnail slot="start">
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
             </IonThumbnail>
-            <IonLabel>Item</IonLabel>
+            <IonLabel>Blank</IonLabel>
           </IonItem>
 
           <IonItem lines="none">
             <IonThumbnail slot="start">
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
             </IonThumbnail>
-            <IonLabel>Item</IonLabel>
+            <IonLabel>Blank</IonLabel>
           </IonItem>
         </IonList>
       </IonCardContent>
