@@ -115,6 +115,9 @@ const calculator: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
+        <br />
+        <br />
+        <IonButton href='/home' color={'warning'}>Back</IonButton>
       </IonContent>
     </IonPage>
   );
