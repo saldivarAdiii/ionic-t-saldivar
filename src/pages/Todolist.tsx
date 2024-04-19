@@ -1,77 +1,56 @@
+import React, { useState } from 'react';
 import {
-  //Initial Components
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonThumbnail,
-  IonButton
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonCheckbox, IonInput, IonButton
 } from '@ionic/react';
 import './home.css';
 
-// CSS
-//import './profile.css';
-
 const Home: React.FC = () => {
+  // State for managing the list of tasks
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [newTask, setNewTask] = useState<string>('');
+
+  // Function to add a new task to the list
+  const addTask = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]);
+      setNewTask('');
+    }
+  };
+
+  // Function to toggle the completion status of a task
+  const toggleTask = (index: number) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index] = tasks[index];
+    setTasks(updatedTasks);
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonTitle>Todo List</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Adi's Application</IonCardTitle>
-        <IonCardSubtitle></IonCardSubtitle>
-      </IonCardHeader>
-      <IonCardContent>
         <IonList>
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="../src/assets/img/click.png" />
-            </IonThumbnail>
-            <IonButton href='/Click'>Click Counter</IonButton>
-          </IonItem>
-
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="../src/assets/img/calculator.png" />
-            </IonThumbnail>
-            <IonButton href='/calculator'>Calculator</IonButton>
-          </IonItem>
-
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </IonThumbnail>
-            <IonLabel>Blank</IonLabel>
-          </IonItem>
-
-          <IonItem lines="none">
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </IonThumbnail>
-            <IonLabel>Blank</IonLabel>
-          </IonItem>
+          {/* Display the list of tasks */}
+          {tasks.map((task, index) => (
+            <IonItem key={index}>
+              <IonLabel>{task}</IonLabel>
+              <IonCheckbox slot="start" checked={false} onIonChange={() => toggleTask(index)} />
+            </IonItem>
+          ))}
         </IonList>
-      </IonCardContent>
-    </IonCard>
+        {/* Input field to add new tasks */}
+        <IonItem>
+          <IonInput placeholder="New Task" value={newTask} onIonChange={(e) => setNewTask(e.detail.value!)} />
+          <IonButton slot="end" onClick={addTask}>Add</IonButton>
+        </IonItem>
+        <br />
+        <IonButton href='/home'>Back to Home</IonButton>
       </IonContent>
     </IonPage>
   );
 };
 
-//
 export default Home;
