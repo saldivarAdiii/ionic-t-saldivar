@@ -52,6 +52,12 @@ const cardData = [
     subtitle: 'Applet #3',
     link: '/Todolist',
   },
+  {
+    title: 'Quote Generator',
+    icon: pencil,
+    subtitle: 'Applet #4',
+    link: '/QuoteGen',
+  },
   
 ];
 
