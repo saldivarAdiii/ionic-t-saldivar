@@ -30,7 +30,7 @@ import {
 import './home.css';
 
 //Ionic Icons
-import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact} from 'ionicons/icons';
+import { speedometerOutline,calculator,pencil, chatbubble, readerOutline, logoIonic,logoFirebase, logoReact, book, bookOutline, bagAddOutline, locateOutline} from 'ionicons/icons';
 
 const cardData = [
   {
@@ -57,6 +57,12 @@ const cardData = [
     icon: pencil,
     subtitle: 'Applet #4',
     link: '/QuoteGen',
+  },
+  {
+    title: 'Notes',
+    icon: bookOutline,
+    subtitle: 'Applet #5',
+    link: '/Notes',
   },
   
 ];
