@@ -71,6 +71,9 @@ const QuoteGenerator: React.FC = () => {
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonButtons slot="start">
+          <IonBackButton defaultHref="/" />
+        </IonButtons>
       <IonContent className='ion-padding'>
         <IonHeader collapse="condense">
           <IonToolbar>
