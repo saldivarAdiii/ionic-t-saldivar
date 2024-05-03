@@ -30,7 +30,7 @@ import './Todolist.css'; // Assuming you have a separate CSS file for styling
 
 // Firebase
 import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from '../firebase';
 
 const Todos: React.FC = () => {
   const [todos, setTodos] = useState<{ id: string; title: string; description: string; dateAdded: string; completed: boolean; }[]>([]);
