@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonCheckbox, IonInput, IonButton
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, 
+  IonCheckbox, IonInput, IonButton, IonButtons, IonBackButton
 } from '@ionic/react';
 import './home.css';
 
@@ -31,6 +32,9 @@ const Home: React.FC = () => {
           <IonTitle>Todo List</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonButtons slot="start">
+          <IonBackButton defaultHref="/" />
+        </IonButtons>
       <IonContent fullscreen>
         <IonList>
           {/* Display the list of tasks */}
