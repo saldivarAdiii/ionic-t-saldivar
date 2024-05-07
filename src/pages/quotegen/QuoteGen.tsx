@@ -23,7 +23,8 @@ import {
   useIonToast,
   IonAlert,
   IonModal,
-  IonButtons
+  IonButtons,
+  IonBackButton
 } from '@ionic/react';
 import { trashOutline, pencilOutline, refreshOutline } from 'ionicons/icons';
 
@@ -117,6 +118,9 @@ const Quotes: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+        <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>

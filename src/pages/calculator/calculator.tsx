@@ -34,9 +34,9 @@ const calculator: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         
-        <IonButtons slot="start">
-          <IonBackButton defaultHref="/" />
-        </IonButtons>
+        <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
         <IonContent fullscreen className="ion-padding" style={{ backgroundColor: 'dark' }}>
           <IonGrid>
           <IonRow>
