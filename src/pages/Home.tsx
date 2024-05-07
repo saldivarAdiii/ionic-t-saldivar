@@ -37,32 +37,32 @@ const cardData = [
     title: 'Click Counter',
     icon: speedometerOutline,
     subtitle: 'Applet #1',
-    link: '/Click',
+    link: '/ionic-t-saldivar/Home/Click',
 
   },
   {
     title: 'Calculator',
     icon: calculator,
     subtitle: 'Applet #2',
-    link: '/calculator',
+    link: '/ionic-t-saldivar/Home/calculator',
   },
   {
     title: 'To Do List',
     icon: pencil,
     subtitle: 'Applet #3',
-    link: '/Todolist',
+    link: 'ionic-t-saldivar/Home/Todolist',
   },
   {
     title: 'Quote Generator',
     icon: pencil,
     subtitle: 'Applet #4',
-    link: '/QuoteGen',
+    link: '/ionic-t-saldivar/Home/QuoteGen',
   },
   {
     title: 'Notes',
     icon: bookOutline,
     subtitle: 'Applet #5',
-    link: '/Notes',
+    link: '/ionic-t-saldivar/Home/Notes',
   },
   
 ];
