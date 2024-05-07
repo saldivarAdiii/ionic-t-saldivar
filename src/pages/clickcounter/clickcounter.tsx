@@ -20,9 +20,9 @@ const clickcounter: React.FC = () => {
           <IonTitle>Click Counter</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonButtons slot="start">
-          <IonBackButton defaultHref="/" />
-        </IonButtons>
+      <IonButtons slot='start'>
+              <IonBackButton defaultHref='/app/home'/>
+           </IonButtons>
       <IonContent fullscreen className="ion-padding">
         <h2>Clicks: {count}</h2>
         <IonButton onClick={incrementCount}>Click Counter</IonButton>
