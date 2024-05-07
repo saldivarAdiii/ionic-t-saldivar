@@ -29,7 +29,8 @@ import { trashOutline, pencilOutline, refreshOutline } from 'ionicons/icons';
 
 // Firebase
 import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from '../firebase';
+
 
 const Quotes: React.FC = () => {
   const [quotes, setQuotes] = useState<{ id: string; text: string; author: string; }[]>([]);
