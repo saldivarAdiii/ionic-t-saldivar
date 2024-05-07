@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  IonBackButton,
   IonButton,
-  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -10,7 +8,6 @@ import {
   IonCardTitle,
   IonCol,
   IonContent,
-  IonGrid,
   IonHeader,
   IonIcon,
   IonInput,
@@ -22,48 +19,99 @@ import {
   IonTitle,
   IonToolbar,
   IonItemDivider,
-  IonSearchbar,
+  IonTextarea,
+  useIonToast,
   IonAlert,
-  IonActionSheet,
-  IonAvatar,
-  IonThumbnail
+  IonModal,
+  IonButtons
 } from '@ionic/react';
+import { trashOutline, pencilOutline, refreshOutline } from 'ionicons/icons';
 
-//Dynamic data reference
-import rizzCard from '../assets/img/rizz.json';
+// Firebase
+import { collection, addDoc, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
-const QuoteGenerator: React.FC = () => {
+const Quotes: React.FC = () => {
+  const [quotes, setQuotes] = useState<{ id: string; text: string; author: string; }[]>([]);
+  const [newText, setNewText] = useState<string>('');
+  const [newAuthor, setNewAuthor] = useState<string>('');
+  const inputRefText = useRef<HTMLIonInputElement>(null);
+  const inputRefAuthor = useRef<HTMLIonInputElement>(null);
+  const [present] = useIonToast();
+  const [randomQuote, setRandomQuote] = useState<{ text: string; author: string; } | null>(null);
+  const [showRandomQuoteAlert, setShowRandomQuoteAlert] = useState(false);
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
-
-  // Function to generate a random index
-  const generateRandomIndex = () => {
-    return Math.floor(Math.random() * rizzCard.length);
+  // Toast
+  const addQuoteToast = (position: 'middle') => {
+    present({
+      message: 'Added new Quote',
+      duration: 1500,
+      position: position,
+    });
   };
 
-  // Function to generate a random message
-  const renderRandomMessage = () => {
-    if (randomIndex !== null) {
-      return rizzCard[randomIndex].message;
-    } else {
-      return ''; // Return empty string if randomIndex is null
+  const deleteQuoteToast = (position: 'middle') => {
+    present({
+      message: 'Quote deleted',
+      duration: 1500,
+      position: position,
+    });
+  };
+
+  // Add Quote
+  const addQuote = async () => {
+    if (newText.trim() !== '' && newAuthor.trim() !== '') {
+      const currentDate = new Date().toISOString();
+      addQuoteToast('middle');
+      await addDoc(collection(db, 'quotes'), {
+        text: newText,
+        author: newAuthor,
+        dateAdded: currentDate
+      });
+      clearInput();
     }
   };
 
-  // Function to handle opening of the alert
-  const handleOpenAlert = () => {
-    const newIndex = generateRandomIndex();
-    setRandomIndex(newIndex);
-    setShowAlert(true);
+  // Read Firebase Data
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'quotes'), (snapshot) => {
+      setQuotes(snapshot.docs.map(doc => ({
+        id: doc.id,
+        text: doc.data().text,
+        author: doc.data().author
+      })));
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Clear the input fields
+  const clearInput = () => {
+    setNewText('');
+    setNewAuthor('');
+    if (inputRefText.current && inputRefAuthor.current) {
+      inputRefText.current.setFocus();
+    }
   };
 
-  // Function to handle closing of the alert
-  const handleAlertDismiss = () => {
-    setRandomIndex(0); // Reset the index to 0
-    setShowAlert(false); // Hide the alert
+  // Delete Quote
+  const deleteQuote = async (id: string) => {
+    deleteQuoteToast('middle');
+    await deleteDoc(doc(db, 'quotes', id));
   };
-  
+
+  // Generate Random Quote
+  const generateRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+    if (randomQuote) {
+      setRandomQuote(randomQuote);
+      setShowRandomQuoteAlert(true);
+    } else {
+      setRandomQuote(null);
+    }
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <IonPage>
       <IonHeader>
@@ -71,36 +119,85 @@ const QuoteGenerator: React.FC = () => {
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonButtons slot="start">
-          <IonBackButton defaultHref="/" />
-        </IonButtons>
-      <IonContent className='ion-padding'>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Quote Generator</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <img alt="Silhouette of mountains" src="https://pbs.twimg.com/media/F6SEuqhW0AAJxD5.jpg" />
-          {/*Button Trigger*/}
-          <IonGrid>
+      <IonContent className="ion-padding">
+        <IonCard color={'dark'}>
+          <IonCardHeader>
+            <IonCardTitle>
+              <IonInput
+                placeholder="Enter quote"
+                value={newText}
+                onIonInput={(e) => setNewText(e.detail.value!)}
+                ref={inputRefText}
+              ></IonInput>
+            </IonCardTitle>
+            <IonCardSubtitle>
+              <IonInput
+                placeholder="Enter author"
+                value={newAuthor}
+                onIonInput={(e) => setNewAuthor(e.detail.value!)}
+                ref={inputRefAuthor}
+              ></IonInput>
+            </IonCardSubtitle>
+          </IonCardHeader>
+          <IonCardContent>
             <IonRow>
-                <IonCol size="" push="">
-                <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>Click me</IonButton> 
-                <IonAlert
-                  isOpen={showAlert}
-                  onDidDismiss={handleAlertDismiss} // Call the handleAlertDismiss function when the alert is closed
-                  header="Rizz"
-                  subHeader=""
-                  message={renderRandomMessage()}
-                  buttons={['Close']}
-                />
-                </IonCol>
+              <IonCol>
+                <IonButton expand="block" onClick={addQuote} color={'dark'}>
+                  Add Quote
+                </IonButton>
+              </IonCol>
+              <IonCol>
+                <IonButton expand="block" onClick={generateRandomQuote} color={'dark'}>
+                  <IonIcon icon={refreshOutline} />
+                  Generate Random Quote
+                </IonButton>
+              </IonCol>
+
+              <IonCol>
+                <IonButton expand="block" onClick={() => setIsOpen(true)} color={'dark'}>View Added Quotes</IonButton>
+                    <IonModal isOpen={isOpen}>
+                      <IonHeader>
+                        <IonToolbar>
+                          <IonTitle>Quotes</IonTitle>
+                          <IonButtons slot="end">
+                            <IonButton onClick={() => setIsOpen(false)}>Close</IonButton>
+                          </IonButtons>
+                        </IonToolbar>
+                      </IonHeader>
+                      <IonContent className="ion-padding">
+                      <IonItemDivider color="light">
+                      <IonLabel>Quotes</IonLabel>
+                    </IonItemDivider>
+                    <IonList>
+                      {quotes.map(quote => (
+                        <IonItem key={quote.id}>
+                          <IonLabel>
+                            <h2>{quote.text}</h2>
+                            <p>- {quote.author}</p>
+                          </IonLabel>
+                          <IonButton fill="clear" onClick={() => deleteQuote(quote.id)}>
+                            <IonIcon icon={trashOutline} />
+                          </IonButton>
+                        </IonItem>
+                      ))}
+                    </IonList>
+                        </IonContent>
+                      </IonModal>
+                  </IonCol>
+
             </IonRow>
-          </IonGrid>
+          </IonCardContent>
+        </IonCard>
+        <IonAlert
+          isOpen={showRandomQuoteAlert}
+          onDidDismiss={() => setShowRandomQuoteAlert(false)}
+          header="Quote for You"
+          message={randomQuote ? `"${randomQuote.text}" - ${randomQuote.author}` : "No quotes available."}
+          buttons={['OK']}
+        />
       </IonContent>
     </IonPage>
   );
 };
 
-export default  QuoteGenerator;
+export default Quotes;
