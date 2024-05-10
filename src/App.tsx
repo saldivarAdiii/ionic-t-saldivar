@@ -73,8 +73,8 @@ const App: React.FC = () => (
             <Notes />
           </Route>
           
-          <Route exact path="/">
-            <Redirect to="/Home" />
+          <Route exact path="/ionic-t-saldivar/">
+            <Redirect to="/ionic-t-saldivar/Home" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

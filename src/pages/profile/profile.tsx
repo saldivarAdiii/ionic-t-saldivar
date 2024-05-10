@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
 
         </IonHeader>
         <IonCard>
-      <img alt="Silhouette of mountains" src="../src/assets/img/Adiblessed.jpeg" />
+      <img alt="Silhouette of mountains" src="https://github.com/saldivarAdiii/ionic-t-saldivar/blob/main/src/assets/img/Adiblessed.jpeg" />
       <IonCardHeader>
         <IonCardTitle>adiii</IonCardTitle>
         <IonCardSubtitle>blessed</IonCardSubtitle>
